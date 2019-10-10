@@ -7,14 +7,15 @@
         <% if logged_in? %>
           <li><%= link_to "Users", '#', id: "header-list" %></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown", id= "header-list">
+              <%= @current_user.name %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Show", current_user %></li>
               <li><%= link_to "Settings", '#' %></li>
+              <li><%= link_to "Task index", user_tasks_path(current_user) %></li>
               <li class="divider"></li>
-              <li><%= link_to "Log out", logout_path, method: :delete, id: "header-lise"%></li>
+              <li><%= link_to "Log out", logout_path, method: :delete %></li>
             </ul>
           </li>
         <% else %>

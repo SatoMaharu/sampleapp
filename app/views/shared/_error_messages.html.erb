@@ -1,10 +1,10 @@
-<% if @user.errors.any? %>
+<% if model.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      The form contains <%= pluralize(@user.errors.count, "error") %>.
+      <%= pluralize(model.errors.count, "件") %>のエラーが発生しています。
     </div>
     <ul>
-    <% @user.errors.full_messages.each do |msg| %>
+    <% model.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
