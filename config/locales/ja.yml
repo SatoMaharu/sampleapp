@@ -208,24 +208,6 @@ ja:
     pm: 午後
     
 ja:
-  activerecord:
-    models:
-      user: ユーザー
-      tasks: タスク
-    attributes:
-        user:
-          id: ID
-          name: 名前
-          email: メールアドレス
-          password: パスワード
-          password_confirmation: パスワード再入力
-          created_at: 作成日
-          updated_at: 更新日
-        task:
-          name: 名前
-          note: 詳細
-
-ja:
   date:
     formats:
       default: "%Y/%m/%d"

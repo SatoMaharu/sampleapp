@@ -129,3 +129,14 @@ p {
 .main-item p {
   font-size: 20px;
 }
+
+/* テーブル */
+
+#user-table, #task-table {
+  margin: 0 auto;
+  th {
+    background: silver;
+    text-align: center;
+    width: 200px;
+  }
+}
