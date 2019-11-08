@@ -1,14 +1,19 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :show, :destroy]
+  before_action :logged_in_user, only: [:show, :edit, :update, :destroy, :index]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user, only: [:index, :destroy]
+  before_action :admin_user_or_correct_user, only: :show
+  before_action :admin_user_or_new_user, only: :new
+  
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
   end 
   
   def edit
-    @user = User.find(params[:id])
   end
   
   def update
-    @user = User.find(params[:id])
     @user.update_attributes(user_params)
     if @user.save
       flash[:success] = "ユーザー情報を更新しました。"
@@ -20,7 +25,6 @@ class UsersController < ApplicationController
   end 
   
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -39,7 +43,6 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     redirect_to users_url
   end 
@@ -49,4 +52,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
+    
 end

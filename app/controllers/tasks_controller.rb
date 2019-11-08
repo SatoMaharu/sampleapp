@@ -1,17 +1,18 @@
 class TasksController < ApplicationController
-
+  before_action :set_user
+  before_action :set_task, only: [:edit, :show, :update, :destroy]
+  before_action :correct_user
+  before_action :logged_in_user
+  
   def index
-    @user = User.find(params[:user_id])
     @tasks = @user.tasks.where(params[:user_id])
   end
   
   def new
-    @user = User.find(params[:user_id])
     @task = Task.new
   end 
   
   def create
-    @user = User.find(params[:user_id])
     @task = @user.tasks.new(task_params)
     if @task.save
       flash[:success] = "投稿されました。"
@@ -23,18 +24,12 @@ class TasksController < ApplicationController
   end 
   
   def edit
-    @user = User.find(params[:user_id])
-    @task = @user.tasks.find(params[:id])
   end
   
   def show
-    @user = User.find(params[:user_id])
-    @task = @user.tasks.find(params[:id])
   end 
   
   def update
-    @user = User.find(params[:user_id])
-    @task = @user.tasks.find(params[:id])
     @task.update_attributes(task_params)
     if @task.save
       flash[:success] = "投稿が編集されました。"
@@ -46,8 +41,6 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    @user = User.find(params[:user_id])
-    @task = @user.tasks.find(params[:id])
     @task.destroy
     flash[:success] = "投稿を削除しました。"
     redirect_to user_tasks_url
