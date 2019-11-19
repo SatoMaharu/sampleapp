@@ -7,7 +7,11 @@
       <h1>TaskApp</h1>
       <p>TaskAppは簡易ToDo管理ツールです。</p>
       <p>↓↓ 初めてのご利用 ↓↓</p>
-      <p><%= link_to "アカウント作成", new_user_path, class: "btn btn-success btn-lg" %></p>
+      <% if current_user.nil? || current_user.admin? %>
+        <p><%= link_to "アカウント作成", new_user_path, class: "btn btn-success btn-lg" %></p>
+      <% else %>
+        <button type="button" class="btn btn-success btn-lg" disabled>アカウント作成</button>
+      <% end %>
     </div>
   </div>
   

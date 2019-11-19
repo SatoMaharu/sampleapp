@@ -2,7 +2,7 @@
 
 <h1>タスク詳細</h1>
 
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-10 col-md-offset-1">
   <table class="table table-bordered", id="task-table">
     <tr>
       <th>ID</th>
@@ -25,4 +25,8 @@
       <td><%= l(@task.updated_at) %></td>
     </tr>
   </table>
+  <div class="button">
+  <%= link_to "編集", edit_user_task_path(@task.user_id, @task.id), class: "btn btn-primary btn-lg" %>
+  <%= link_to "削除", user_task_path(@task.user_id, @task.id), method: :delete, data: { confirm: "「#{@task.name}」を削除してよろしいですか？"}, class: "btn btn-danger btn-lg" %>
+  </div>
 </div>

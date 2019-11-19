@@ -11,7 +11,7 @@
       <%= f.text_field :name, class: "form-control" %>
      
       <%= f.label :note %>
-      <%= f.text_area :note, class: "form-control" %>
+      <%= f.text_area :note, rows: 7, class: "form-control" %>
      
       <%= f.submit "編集", class: "btn btn-primary" %>
       <%= link_to "キャンセル", user_tasks_path, class: "btn btn-default" %>

@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   before_action :logged_in_user
   
   def index
-    @tasks = @user.tasks.where(params[:user_id])
+    @tasks = @user.tasks.where(params[:user_id]).order(created_at: :desc)
   end
   
   def new
